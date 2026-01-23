@@ -221,7 +221,6 @@ export const config: VendureConfig = {
         : `${process.env.APP_URL || 'https://argenta-b2b.up.railway.app'}/assets/`,
     }),
     EmailPlugin.init({
-      ...(IS_DEV ? { devMode: true } : {}),
       outputPath: path.join(__dirname, '../email-output'),
       route: 'mailbox',
       handlers: defaultEmailHandlers,
