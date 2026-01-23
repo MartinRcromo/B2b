@@ -1,4 +1,4 @@
-import { VendureConfig, DefaultLogger, LogLevel } from '@vendure/core';
+import { VendureConfig, DefaultLogger, LogLevel, LanguageCode, PermissionDefinition } from '@vendure/core';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
@@ -40,26 +40,26 @@ export const config: VendureConfig = {
     },
     customPermissions: [
       // Permisos personalizados para roles B2B
-      {
+      new PermissionDefinition({
         name: 'ManageQuotes',
         description: 'Allows managing quotes/RFQ',
-      },
-      {
+      }),
+      new PermissionDefinition({
         name: 'ViewCustomerAccount',
         description: 'Allows viewing customer account statements',
-      },
-      {
+      }),
+      new PermissionDefinition({
         name: 'ManageCustomerPricing',
         description: 'Allows managing customer-specific pricing',
-      },
-      {
+      }),
+      new PermissionDefinition({
         name: 'ApproveSpecialPrices',
         description: 'Allows approving special negotiated prices',
-      },
-      {
+      }),
+      new PermissionDefinition({
         name: 'ViewSalesReports',
         description: 'Allows viewing sales reports and analytics',
-      },
+      }),
     ],
   },
   dbConnectionOptions: process.env.DATABASE_URL
@@ -93,12 +93,12 @@ export const config: VendureConfig = {
       {
         name: 'priceCluster',
         type: 'string',
-        label: [{ languageCode: 'es', value: 'Cluster de Precios' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Cluster de Precios' }],
         options: [
-          { value: 'VIP', label: [{ languageCode: 'es', value: 'VIP' }] },
-          { value: 'Premium', label: [{ languageCode: 'es', value: 'Premium' }] },
-          { value: 'Standard', label: [{ languageCode: 'es', value: 'Standard' }] },
-          { value: 'Nuevo', label: [{ languageCode: 'es', value: 'Nuevo' }] },
+          { value: 'VIP', label: [{ languageCode: LanguageCode.es, value: 'VIP' }] },
+          { value: 'Premium', label: [{ languageCode: LanguageCode.es, value: 'Premium' }] },
+          { value: 'Standard', label: [{ languageCode: LanguageCode.es, value: 'Standard' }] },
+          { value: 'Nuevo', label: [{ languageCode: LanguageCode.es, value: 'Nuevo' }] },
         ],
         defaultValue: 'Standard',
         public: false,
@@ -106,28 +106,28 @@ export const config: VendureConfig = {
       {
         name: 'creditLimit',
         type: 'int',
-        label: [{ languageCode: 'es', value: 'Límite de Crédito' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Límite de Crédito' }],
         defaultValue: 0,
         public: false,
       },
       {
         name: 'currentBalance',
         type: 'int',
-        label: [{ languageCode: 'es', value: 'Saldo Actual' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Saldo Actual' }],
         defaultValue: 0,
         public: false,
       },
       {
         name: 'flexusCustomerId',
         type: 'string',
-        label: [{ languageCode: 'es', value: 'ID en Flexus ERP' }],
+        label: [{ languageCode: LanguageCode.es, value: 'ID en Flexus ERP' }],
         nullable: true,
         public: false,
       },
       {
         name: 'assignedSalesperson',
         type: 'string',
-        label: [{ languageCode: 'es', value: 'Vendedor Asignado' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Vendedor Asignado' }],
         nullable: true,
         public: false,
       },
@@ -136,42 +136,42 @@ export const config: VendureConfig = {
       {
         name: 'vehicleMake',
         type: 'string',
-        label: [{ languageCode: 'es', value: 'Marca del Vehículo' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Marca del Vehículo' }],
         nullable: true,
       },
       {
         name: 'vehicleModel',
         type: 'string',
-        label: [{ languageCode: 'es', value: 'Modelo del Vehículo' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Modelo del Vehículo' }],
         nullable: true,
       },
       {
         name: 'vehicleYearFrom',
         type: 'int',
-        label: [{ languageCode: 'es', value: 'Año Desde' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Año Desde' }],
         nullable: true,
       },
       {
         name: 'vehicleYearTo',
         type: 'int',
-        label: [{ languageCode: 'es', value: 'Año Hasta' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Año Hasta' }],
         nullable: true,
       },
       {
         name: 'oemCode',
         type: 'string',
-        label: [{ languageCode: 'es', value: 'Código OEM' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Código OEM' }],
         nullable: true,
       },
       {
         name: 'partType',
         type: 'string',
-        label: [{ languageCode: 'es', value: 'Tipo de Parte' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Tipo de Parte' }],
         options: [
-          { value: 'optica_delantera', label: [{ languageCode: 'es', value: 'Óptica Delantera' }] },
-          { value: 'faro_trasero', label: [{ languageCode: 'es', value: 'Faro Trasero' }] },
-          { value: 'luz_lateral', label: [{ languageCode: 'es', value: 'Luz Lateral' }] },
-          { value: 'luz_placa', label: [{ languageCode: 'es', value: 'Luz de Placa' }] },
+          { value: 'optica_delantera', label: [{ languageCode: LanguageCode.es, value: 'Óptica Delantera' }] },
+          { value: 'faro_trasero', label: [{ languageCode: LanguageCode.es, value: 'Faro Trasero' }] },
+          { value: 'luz_lateral', label: [{ languageCode: LanguageCode.es, value: 'Luz Lateral' }] },
+          { value: 'luz_placa', label: [{ languageCode: LanguageCode.es, value: 'Luz de Placa' }] },
         ],
         nullable: true,
       },
@@ -180,32 +180,32 @@ export const config: VendureConfig = {
       {
         name: 'partSide',
         type: 'string',
-        label: [{ languageCode: 'es', value: 'Lado' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Lado' }],
         options: [
-          { value: 'left', label: [{ languageCode: 'es', value: 'Izquierdo' }] },
-          { value: 'right', label: [{ languageCode: 'es', value: 'Derecho' }] },
-          { value: 'both', label: [{ languageCode: 'es', value: 'Ambos' }] },
+          { value: 'left', label: [{ languageCode: LanguageCode.es, value: 'Izquierdo' }] },
+          { value: 'right', label: [{ languageCode: LanguageCode.es, value: 'Derecho' }] },
+          { value: 'both', label: [{ languageCode: LanguageCode.es, value: 'Ambos' }] },
         ],
         nullable: true,
       },
       {
         name: 'partPosition',
         type: 'string',
-        label: [{ languageCode: 'es', value: 'Posición' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Posición' }],
         options: [
-          { value: 'front', label: [{ languageCode: 'es', value: 'Delantero' }] },
-          { value: 'rear', label: [{ languageCode: 'es', value: 'Trasero' }] },
+          { value: 'front', label: [{ languageCode: LanguageCode.es, value: 'Delantero' }] },
+          { value: 'rear', label: [{ languageCode: LanguageCode.es, value: 'Trasero' }] },
         ],
         nullable: true,
       },
       {
         name: 'finish',
         type: 'string',
-        label: [{ languageCode: 'es', value: 'Acabado' }],
+        label: [{ languageCode: LanguageCode.es, value: 'Acabado' }],
         options: [
-          { value: 'chrome', label: [{ languageCode: 'es', value: 'Cromado' }] },
-          { value: 'black', label: [{ languageCode: 'es', value: 'Negro' }] },
-          { value: 'transparent', label: [{ languageCode: 'es', value: 'Transparente' }] },
+          { value: 'chrome', label: [{ languageCode: LanguageCode.es, value: 'Cromado' }] },
+          { value: 'black', label: [{ languageCode: LanguageCode.es, value: 'Negro' }] },
+          { value: 'transparent', label: [{ languageCode: LanguageCode.es, value: 'Transparente' }] },
         ],
         nullable: true,
       },
@@ -221,7 +221,7 @@ export const config: VendureConfig = {
         : `${process.env.APP_URL || 'https://argenta-b2b.up.railway.app'}/assets/`,
     }),
     EmailPlugin.init({
-      devMode: IS_DEV,
+      ...(IS_DEV ? { devMode: true } : {}),
       outputPath: path.join(__dirname, '../email-output'),
       route: 'mailbox',
       handlers: defaultEmailHandlers,
