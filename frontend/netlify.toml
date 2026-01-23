@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production.environment]
+  NEXT_PUBLIC_API_URL = "TU_URL_DE_RAILWAY_AQUI"
+  NEXT_PUBLIC_SHOP_API_PATH = "/shop-api"
+  NEXT_PUBLIC_ADMIN_API_PATH = "/admin-api"

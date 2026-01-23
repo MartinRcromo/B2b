@@ -62,17 +62,26 @@ export const config: VendureConfig = {
       },
     ],
   },
-  dbConnectionOptions: {
-    type: 'postgres',
-    host: process.env.DB_HOST || 'localhost',
-    port: parseInt(process.env.DB_PORT || '5432'),
-    username: process.env.DB_USERNAME || 'postgres',
-    password: process.env.DB_PASSWORD || 'postgres',
-    database: process.env.DB_NAME || 'argenta_b2b',
-    synchronize: IS_DEV, // En producción usar migraciones
-    logging: IS_DEV,
-    migrations: [path.join(__dirname, './migrations/*.ts')],
-  },
+  dbConnectionOptions: process.env.DATABASE_URL
+    ? {
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        synchronize: IS_DEV,
+        logging: IS_DEV,
+        migrations: [path.join(__dirname, './migrations/*.ts')],
+        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+      }
+    : {
+        type: 'postgres',
+        host: process.env.DB_HOST || 'localhost',
+        port: parseInt(process.env.DB_PORT || '5432'),
+        username: process.env.DB_USERNAME || 'postgres',
+        password: process.env.DB_PASSWORD || 'postgres',
+        database: process.env.DB_NAME || 'argenta_b2b',
+        synchronize: IS_DEV,
+        logging: IS_DEV,
+        migrations: [path.join(__dirname, './migrations/*.ts')],
+      },
   paymentOptions: {
     paymentMethodHandlers: [
       // Los pagos se manejan offline, pero mantenemos handlers básicos
@@ -207,7 +216,9 @@ export const config: VendureConfig = {
     AssetServerPlugin.init({
       route: 'assets',
       assetUploadDir: path.join(__dirname, '../static/assets'),
-      assetUrlPrefix: IS_DEV ? 'http://localhost:3000/assets/' : 'https://argenta.com/assets/',
+      assetUrlPrefix: IS_DEV
+        ? 'http://localhost:3000/assets/'
+        : `${process.env.APP_URL || 'https://argenta-b2b.up.railway.app'}/assets/`,
     }),
     EmailPlugin.init({
       devMode: IS_DEV,
