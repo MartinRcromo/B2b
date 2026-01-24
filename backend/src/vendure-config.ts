@@ -21,6 +21,8 @@ dotenv.config();
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
 export const config: VendureConfig = {
+  defaultLanguageCode: LanguageCode.es,
+  availableLanguages: [LanguageCode.es, LanguageCode.en],
   apiOptions: {
     port: parseInt(process.env.PORT || '3000'),
     adminApiPath: process.env.ADMIN_API_PATH || 'admin-api',
