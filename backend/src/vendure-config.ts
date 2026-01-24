@@ -220,16 +220,17 @@ export const config: VendureConfig = {
         ? 'http://localhost:3000/assets/'
         : `${process.env.APP_URL || 'https://argenta-b2b.up.railway.app'}/assets/`,
     }),
-    EmailPlugin.init({
-      devMode: true,
-      outputPath: path.join(__dirname, '../email-output'),
-      route: 'mailbox',
-      handlers: defaultEmailHandlers,
-      templatePath: path.join(__dirname, '../static/email/templates'),
-      globalTemplateVars: {
-        fromAddress: '"Argenta Autopartes" <noreply@argenta.com>',
-      },
-    } as const),
+    // EmailPlugin disabled - needs template files
+    // EmailPlugin.init({
+    //   devMode: true,
+    //   outputPath: path.join(__dirname, '../email-output'),
+    //   route: 'mailbox',
+    //   handlers: defaultEmailHandlers,
+    //   templatePath: path.join(__dirname, '../static/email/templates'),
+    //   globalTemplateVars: {
+    //     fromAddress: '"Argenta Autopartes" <noreply@argenta.com>',
+    //   },
+    // } as const),
     AdminUiPlugin.init({
       route: 'admin',
       port: 3002,
