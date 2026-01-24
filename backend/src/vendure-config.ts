@@ -238,7 +238,11 @@ export const config: VendureConfig = {
     // } as const),
     AdminUiPlugin.init({
       route: 'admin',
-      port: 3002,
+      port: IS_DEV ? 3002 : 3000,
+      adminUiConfig: {
+        apiHost: 'auto',
+        apiPort: 'auto',
+      },
     }),
     // Los custom plugins se agregarán aquí
     // ArgentaAutopartsCatalogPlugin,
