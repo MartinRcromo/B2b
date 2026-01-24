@@ -66,7 +66,7 @@ export const config: VendureConfig = {
     ? {
         type: 'postgres',
         url: process.env.DATABASE_URL,
-        synchronize: IS_DEV,
+        synchronize: true, // Enable for initial setup, disable after first run
         logging: IS_DEV,
         migrations: [path.join(__dirname, './migrations/*.ts')],
         ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
