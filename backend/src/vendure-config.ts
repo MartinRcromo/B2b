@@ -233,9 +233,6 @@ export const config: VendureConfig = {
     AdminUiPlugin.init({
       route: 'admin',
       port: 3002,
-      app: {
-        path: path.join(__dirname, '../admin-ui/dist'),
-      },
     }),
     // Los custom plugins se agregarán aquí
     // ArgentaAutopartsCatalogPlugin,
