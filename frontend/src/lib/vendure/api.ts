@@ -3,7 +3,13 @@ import {print} from 'graphql';
 import {getAuthToken} from '@/lib/auth';
 
 const VENDURE_API_URL = process.env.VENDURE_SHOP_API_URL || process.env.NEXT_PUBLIC_VENDURE_SHOP_API_URL;
-const VENDURE_CHANNEL_TOKEN = process.env.VENDURE_CHANNEL_TOKEN || process.env.NEXT_PUBLIC_VENDURE_CHANNEL_TOKEN || '__default_channel__';
+// Only use channel token if explicitly set and not the placeholder value
+const VENDURE_CHANNEL_TOKEN = (() => {
+    const token = process.env.VENDURE_CHANNEL_TOKEN || process.env.NEXT_PUBLIC_VENDURE_CHANNEL_TOKEN;
+    // Return undefined if token is not set or is the placeholder value
+    if (!token || token === '__default_channel__') return undefined;
+    return token;
+})();
 const VENDURE_AUTH_TOKEN_HEADER = process.env.VENDURE_AUTH_TOKEN_HEADER || 'vendure-auth-token';
 const VENDURE_CHANNEL_TOKEN_HEADER = process.env.VENDURE_CHANNEL_TOKEN_HEADER || 'vendure-token';
 
@@ -64,8 +70,11 @@ export async function query<TResult, TVariables>(
         headers['Authorization'] = `Bearer ${authToken}`;
     }
 
-    // Set the channel token header (use provided channelToken or default)
-    headers[VENDURE_CHANNEL_TOKEN_HEADER] = channelToken || VENDURE_CHANNEL_TOKEN;
+    // Set the channel token header only if a valid token is provided
+    const effectiveChannelToken = channelToken || VENDURE_CHANNEL_TOKEN;
+    if (effectiveChannelToken) {
+        headers[VENDURE_CHANNEL_TOKEN_HEADER] = effectiveChannelToken;
+    }
 
     const response = await fetch(VENDURE_API_URL!, {
         ...fetchOptions,
