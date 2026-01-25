@@ -206,9 +206,10 @@ export async function getProducts(options?: any) {
 
 export async function getProduct(idOrSlug: string) {
   const isId = /^[0-9]+$/.test(idOrSlug);
-  return vendureClient.request(GET_PRODUCT_QUERY, {
-    ...(isId ? { id: idOrSlug } : { slug: idOrSlug }),
-  });
+  const variables = isId
+    ? { id: idOrSlug, slug: undefined }
+    : { id: undefined, slug: idOrSlug };
+  return vendureClient.request(GET_PRODUCT_QUERY, variables as any);
 }
 
 export async function login(username: string, password: string) {
