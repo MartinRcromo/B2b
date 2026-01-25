@@ -33,6 +33,7 @@ export const config: VendureConfig = {
     cors: {
       origin: process.env.CORS_ORIGIN || ['http://localhost:3001', 'https://b2b-argenta.netlify.app'],
       credentials: true,
+      exposedHeaders: ['vendure-auth-token'],
     },
   },
   authOptions: {
