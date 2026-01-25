@@ -1,4 +1,4 @@
-import { VendureConfig, DefaultLogger, LogLevel, LanguageCode, PermissionDefinition } from '@vendure/core';
+import { VendureConfig, DefaultLogger, LogLevel, LanguageCode, PermissionDefinition, DefaultSearchPlugin } from '@vendure/core';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
@@ -244,6 +244,7 @@ export const config: VendureConfig = {
         apiPort: 'auto',
       },
     }),
+    DefaultSearchPlugin.init({ bufferUpdates: false, indexStockStatus: true }),
     // Los custom plugins se agregarán aquí
     // ArgentaAutopartsCatalogPlugin,
     // ArgentaCustomerPricingPlugin,
