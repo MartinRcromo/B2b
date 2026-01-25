@@ -27,7 +27,7 @@ export default function LoginPage() {
 
       // Login successful if we have an id and identifier (CurrentUser)
       if (loginData?.id && loginData?.identifier) {
-        router.push('/');
+        router.push('/dashboard');
       } else if (loginData?.message) {
         setError(loginData.message);
       } else if (loginData?.errorCode) {

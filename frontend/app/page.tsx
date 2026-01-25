@@ -1,36 +1,13 @@
-import Link from 'next/link';
+import Header from '@/components/layout/Header';
 
 /**
  * Home Page - Portal B2B Argenta
- *
- * Página de inicio del portal que muestra:
- * - Bienvenida
- * - Acceso rápido a búsqueda por vehículo
- * - Categorías destacadas
- * - Información de cuenta (para usuarios logueados)
  */
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-argenta-primary">
-                Argenta Autopartes
-              </h1>
-              <p className="text-gray-600 mt-1">Portal B2B para distribuidores</p>
-            </div>
-            <nav className="flex gap-4">
-              <Link href="/login" className="btn-primary">
-                Iniciar Sesión
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="py-16 bg-gradient-to-r from-argenta-primary to-argenta-secondary text-white">
@@ -52,6 +29,9 @@ export default function HomePage() {
                   <option>Ford</option>
                   <option>Chevrolet</option>
                   <option>Volkswagen</option>
+                  <option>Fiat</option>
+                  <option>Renault</option>
+                  <option>Toyota</option>
                 </select>
                 <select className="input text-gray-800">
                   <option>Modelo</option>
