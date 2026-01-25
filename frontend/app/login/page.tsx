@@ -25,7 +25,8 @@ export default function LoginPage() {
       const loginData = result?.login || result?.data?.login;
       console.log('Login data:', loginData);
 
-      if (loginData?.__typename === 'CurrentUser') {
+      // Login successful if we have an id and identifier (CurrentUser)
+      if (loginData?.id && loginData?.identifier) {
         router.push('/');
       } else if (loginData?.message) {
         setError(loginData.message);
