@@ -10,7 +10,7 @@ async function Copyright() {
 
     return (
         <div>
-            © {new Date().getFullYear()} Vendure Store. All rights reserved.
+            © {new Date().getFullYear()} Argenta Autopartes. Todos los derechos reservados.
         </div>
     )
 }
@@ -27,12 +27,15 @@ export async function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div>
                         <p className="text-sm font-semibold mb-4 uppercase tracking-wider">
-                            Vendure Store
+                            Argenta Autopartes
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                            Tu proveedor de confianza en autopartes.
                         </p>
                     </div>
 
                     <div>
-                        <p className="text-sm font-semibold mb-4">Categories</p>
+                        <p className="text-sm font-semibold mb-4">Categorías</p>
                         <ul className="space-y-2 text-sm text-muted-foreground">
                             {collections.map((collection) => (
                                 <li key={collection.id}>
@@ -48,37 +51,31 @@ export async function Footer() {
                     </div>
 
                     <div>
-                        <h4 className="text-sm font-semibold mb-4">Vendure</h4>
+                        <h4 className="text-sm font-semibold mb-4">Mi Cuenta</h4>
                         <ul className="space-y-2 text-sm text-muted-foreground">
                             <li>
-                                <a
-                                    href="https://github.com/vendure-ecommerce"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                <Link
+                                    href="/account/orders"
                                     className="hover:text-foreground transition-colors"
                                 >
-                                    GitHub
-                                </a>
+                                    Mis Pedidos
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="https://docs.vendure.io"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                <Link
+                                    href="/account/profile"
                                     className="hover:text-foreground transition-colors"
                                 >
-                                    Documentation
-                                </a>
+                                    Mi Perfil
+                                </Link>
                             </li>
                             <li>
-                                <a
-                                    href="https://github.com/vendure-ecommerce/vendure"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                <Link
+                                    href="/cart"
                                     className="hover:text-foreground transition-colors"
                                 >
-                                    Source code
-                                </a>
+                                    Carrito
+                                </Link>
                             </li>
                         </ul>
                     </div>

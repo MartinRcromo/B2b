@@ -28,15 +28,15 @@ export async function NavbarUser() {
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost">
                     <User className="h-5 w-5"/>
-                    Hi, {customer.firstName}
+                    Hola, {customer.firstName}
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuItem asChild>
-                    <Link href="/account/profile">Profile</Link>
+                    <Link href="/account/profile">Mi Perfil</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <Link href="/account/orders">Orders</Link>
+                    <Link href="/account/orders">Mis Pedidos</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem asChild>
