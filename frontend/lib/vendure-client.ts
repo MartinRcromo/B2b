@@ -147,6 +147,7 @@ export const LOGIN_MUTATION = `
 `;
 
 // Query: Usuario actual
+// Note: customFields is a JSON scalar in Vendure, so we query it without subfields
 export const GET_ACTIVE_CUSTOMER_QUERY = `
   query GetActiveCustomer {
     activeCustomer {
@@ -154,12 +155,7 @@ export const GET_ACTIVE_CUSTOMER_QUERY = `
       firstName
       lastName
       emailAddress
-      customFields {
-        priceCluster
-        creditLimit
-        currentBalance
-        assignedSalesperson
-      }
+      customFields
     }
   }
 `;
