@@ -30,6 +30,10 @@ export const config: VendureConfig = {
     adminApiDebug: IS_DEV,
     shopApiPlayground: IS_DEV,
     shopApiDebug: IS_DEV,
+    cors: {
+      origin: process.env.CORS_ORIGIN || ['http://localhost:3001', 'https://b2b-argenta.netlify.app'],
+      credentials: true,
+    },
   },
   authOptions: {
     tokenMethod: ['bearer', 'cookie'],
