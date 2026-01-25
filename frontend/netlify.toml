@@ -15,6 +15,6 @@
   status = 200
 
 [context.production.environment]
-  NEXT_PUBLIC_API_URL = "TU_URL_DE_RAILWAY_AQUI"
+  NEXT_PUBLIC_API_URL = "https://b2b-backend-jg8j.onrender.com"
   NEXT_PUBLIC_SHOP_API_PATH = "/shop-api"
   NEXT_PUBLIC_ADMIN_API_PATH = "/admin-api"
