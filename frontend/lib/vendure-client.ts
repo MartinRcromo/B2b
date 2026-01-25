@@ -213,7 +213,34 @@ export async function getProduct(idOrSlug: string) {
 }
 
 export async function login(username: string, password: string) {
-  return vendureClient.request(LOGIN_MUTATION, { username, password });
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+  const SHOP_API_PATH = process.env.NEXT_PUBLIC_SHOP_API_PATH || '/shop-api';
+
+  const response = await fetch(`${API_URL}${SHOP_API_PATH}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify({
+      query: LOGIN_MUTATION,
+      variables: { username, password },
+    }),
+  });
+
+  const data = await response.json();
+
+  // Capturar el token de autenticación del header
+  const authToken = response.headers.get('vendure-auth-token');
+  if (authToken) {
+    // Guardar token en localStorage para futuras requests
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('vendure-auth-token', authToken);
+    }
+    setAuthToken(authToken);
+  }
+
+  return data.data;
 }
 
 export async function getActiveCustomer() {
