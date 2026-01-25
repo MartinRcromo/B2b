@@ -223,7 +223,7 @@ export const config: VendureConfig = {
       assetUploadDir: path.join(__dirname, '../static/assets'),
       assetUrlPrefix: IS_DEV
         ? 'http://localhost:3000/assets/'
-        : `${process.env.APP_URL || 'https://argenta-b2b.up.railway.app'}/assets/`,
+        : `${process.env.ASSET_URL || process.env.APP_URL || 'https://b2b-backend-jg8j.onrender.com'}/assets/`,
     }),
     // EmailPlugin disabled - needs template files
     // EmailPlugin.init({
