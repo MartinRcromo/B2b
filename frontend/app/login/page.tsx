@@ -19,11 +19,18 @@ export default function LoginPage() {
 
     try {
       const result: any = await login(email, password);
+      console.log('Login result:', result);
 
-      if (result?.login?.__typename === 'CurrentUser') {
+      // Check different possible response structures
+      const loginData = result?.login || result?.data?.login;
+      console.log('Login data:', loginData);
+
+      if (loginData?.__typename === 'CurrentUser') {
         router.push('/');
-      } else if (result?.login?.message) {
-        setError(result.login.message);
+      } else if (loginData?.message) {
+        setError(loginData.message);
+      } else if (loginData?.errorCode) {
+        setError(loginData.errorCode === 'INVALID_CREDENTIALS_ERROR' ? 'Credenciales inválidas' : loginData.errorCode);
       } else {
         setError('Credenciales inválidas');
       }
