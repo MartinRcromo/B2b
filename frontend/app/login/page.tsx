@@ -18,7 +18,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const result = await login(email, password);
+      const result: any = await login(email, password);
 
       if (result?.login?.__typename === 'CurrentUser') {
         router.push('/');
