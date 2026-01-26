@@ -28,7 +28,7 @@ export function ProductCard({product: productProp}: ProductCardProps) {
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                        No image
+                        Sin imagen
                     </div>
                 )}
             </div>
@@ -41,7 +41,7 @@ export function ProductCard({product: productProp}: ProductCardProps) {
                         {product.priceWithTax.__typename === 'PriceRange' ? (
                             product.priceWithTax.min !== product.priceWithTax.max ? (
                                 <>
-                                    from <Price value={product.priceWithTax.min}/>
+                                    desde <Price value={product.priceWithTax.min}/>
                                 </>
                             ) : (
                                 <Price value={product.priceWithTax.min}/>

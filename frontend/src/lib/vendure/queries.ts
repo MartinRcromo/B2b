@@ -95,6 +95,71 @@ export const GetProductDetailQuery = graphql(`
     }
 `);
 
+// Query to get product by ID (workaround for multi-channel slug issues)
+export const GetProductByIdQuery = graphql(`
+    query GetProductById($id: ID!) {
+        product(id: $id) {
+            id
+            name
+            description
+            slug
+            assets {
+                id
+                preview
+                source
+            }
+            variants {
+                id
+                name
+                sku
+                priceWithTax
+                stockLevel
+                options {
+                    id
+                    code
+                    name
+                    groupId
+                    group {
+                        id
+                        code
+                        name
+                    }
+                }
+            }
+            optionGroups {
+                id
+                code
+                name
+                options {
+                    id
+                    code
+                    name
+                }
+            }
+            collections {
+                id
+                name
+                slug
+                parent {
+                    id
+                }
+            }
+        }
+    }
+`);
+
+// Query to find product ID by slug using search
+export const FindProductIdBySlugQuery = graphql(`
+    query FindProductIdBySlug($slug: String!) {
+        products(options: { filter: { slug: { eq: $slug } }, take: 1 }) {
+            items {
+                id
+                slug
+            }
+        }
+    }
+`);
+
 export const GetActiveOrderQuery = graphql(`
     query GetActiveOrder {
         activeOrder {
