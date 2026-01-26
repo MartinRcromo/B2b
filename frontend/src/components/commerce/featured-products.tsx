@@ -1,15 +1,18 @@
 import {ProductCarousel} from "@/components/commerce/product-carousel";
 import {cacheLife} from "next/cache";
 import {query} from "@/lib/vendure/api";
-import {SearchProductsQuery} from "@/lib/vendure/queries";
+import {GetCollectionProductsQuery} from "@/lib/vendure/queries";
 
-async function getFeaturedProducts() {
+async function getFeaturedCollectionProducts() {
     'use cache'
     cacheLife('days')
 
-    // Buscar todos los productos disponibles
-    const result = await query(SearchProductsQuery, {
+    // Fetch featured products from a specific collection
+    // Replace 'featured' with your actual collection slug
+    const result = await query(GetCollectionProductsQuery, {
+        slug: "featured",
         input: {
+            collectionSlug: "featured",
             take: 12,
             skip: 0,
             groupByProduct: true
@@ -21,7 +24,7 @@ async function getFeaturedProducts() {
 
 
 export async function FeaturedProducts() {
-    const products = await getFeaturedProducts();
+    const products = await getFeaturedCollectionProducts();
 
     if (!products || products.length === 0) {
         return null;
