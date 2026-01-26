@@ -19,14 +19,14 @@ import {
 import Link from 'next/link';
 
 const registrationSchema = z.object({
-    emailAddress: z.string().email('Please enter a valid email address'),
+    emailAddress: z.string().email('Por favor ingresa un email válido'),
     firstName: z.string().optional(),
     lastName: z.string().optional(),
     phoneNumber: z.string().optional(),
-    password: z.string().min(8, 'Password must be at least 8 characters'),
+    password: z.string().min(8, 'La contraseña debe tener al menos 8 caracteres'),
     confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
+    message: "Las contraseñas no coinciden",
     path: ["confirmPassword"],
 });
 
@@ -87,11 +87,11 @@ export function RegistrationForm({ redirectTo }: RegistrationFormProps) {
                             name="emailAddress"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email Address</FormLabel>
+                                    <FormLabel>Correo electrónico</FormLabel>
                                     <FormControl>
                                         <Input
                                             type="email"
-                                            placeholder="you@example.com"
+                                            placeholder="tu@email.com"
                                             disabled={isPending}
                                             {...field}
                                         />
@@ -107,11 +107,11 @@ export function RegistrationForm({ redirectTo }: RegistrationFormProps) {
                                 name="firstName"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>First Name</FormLabel>
+                                        <FormLabel>Nombre</FormLabel>
                                         <FormControl>
                                             <Input
                                                 type="text"
-                                                placeholder="John"
+                                                placeholder="Juan"
                                                 disabled={isPending}
                                                 {...field}
                                             />
@@ -126,11 +126,11 @@ export function RegistrationForm({ redirectTo }: RegistrationFormProps) {
                                 name="lastName"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Last Name</FormLabel>
+                                        <FormLabel>Apellido</FormLabel>
                                         <FormControl>
                                             <Input
                                                 type="text"
-                                                placeholder="Doe"
+                                                placeholder="Pérez"
                                                 disabled={isPending}
                                                 {...field}
                                             />
@@ -146,11 +146,11 @@ export function RegistrationForm({ redirectTo }: RegistrationFormProps) {
                             name="phoneNumber"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Phone Number (Optional)</FormLabel>
+                                    <FormLabel>Teléfono (Opcional)</FormLabel>
                                     <FormControl>
                                         <Input
                                             type="tel"
-                                            placeholder="+1 (555) 000-0000"
+                                            placeholder="+54 11 1234-5678"
                                             disabled={isPending}
                                             {...field}
                                         />
@@ -165,7 +165,7 @@ export function RegistrationForm({ redirectTo }: RegistrationFormProps) {
                             name="password"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Password</FormLabel>
+                                    <FormLabel>Contraseña</FormLabel>
                                     <FormControl>
                                         <Input
                                             type="password"
@@ -184,7 +184,7 @@ export function RegistrationForm({ redirectTo }: RegistrationFormProps) {
                             name="confirmPassword"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Confirm Password</FormLabel>
+                                    <FormLabel>Confirmar Contraseña</FormLabel>
                                     <FormControl>
                                         <Input
                                             type="password"
@@ -205,15 +205,15 @@ export function RegistrationForm({ redirectTo }: RegistrationFormProps) {
                         )}
 
                         <Button type="submit" className="w-full" disabled={isPending}>
-                            {isPending ? 'Creating account...' : 'Create Account'}
+                            {isPending ? 'Creando cuenta...' : 'Crear Cuenta'}
                         </Button>
                     </CardContent>
                     <CardFooter className="flex flex-col space-y-4 mt-4">
 
                         <div className="text-sm text-center text-muted-foreground">
-                            Already have an account?{' '}
+                            ¿Ya tienes una cuenta?{' '}
                             <Link href={signInHref} className="hover:text-primary underline">
-                                Sign in
+                                Iniciar sesión
                             </Link>
                         </div>
                     </CardFooter>

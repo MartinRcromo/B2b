@@ -27,32 +27,32 @@ export function EditProfileForm({ customer }: EditProfileFormProps) {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Personal Information</CardTitle>
+                <CardTitle>Información Personal</CardTitle>
                 <CardDescription>
-                    Update your personal details.
+                    Actualiza tus datos personales.
                 </CardDescription>
             </CardHeader>
             <form id="edit-profile-form" action={formAction}>
                 <CardContent className="space-y-4">
                     <div className="space-y-2">
-                        <Label htmlFor="firstName">First Name</Label>
+                        <Label htmlFor="firstName">Nombre</Label>
                         <Input
                             id="firstName"
                             name="firstName"
                             type="text"
-                            placeholder="John"
+                            placeholder="Juan"
                             defaultValue={customer?.firstName || ''}
                             required
                             disabled={isPending}
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label htmlFor="lastName">Last Name</Label>
+                        <Label htmlFor="lastName">Apellido</Label>
                         <Input
                             id="lastName"
                             name="lastName"
                             type="text"
-                            placeholder="Doe"
+                            placeholder="Pérez"
                             defaultValue={customer?.lastName || ''}
                             required
                             disabled={isPending}
@@ -65,11 +65,11 @@ export function EditProfileForm({ customer }: EditProfileFormProps) {
                     )}
                     {state?.success && (
                         <div className="text-sm text-green-600">
-                            Profile updated successfully!
+                            ¡Perfil actualizado correctamente!
                         </div>
                     )}
                     <Button type="submit" disabled={isPending}>
-                        {isPending ? 'Updating...' : 'Update Profile'}
+                        {isPending ? 'Actualizando...' : 'Actualizar Perfil'}
                     </Button>
                 </CardContent>
             </form>

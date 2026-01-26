@@ -118,15 +118,15 @@ export function ProductInfo({product, searchParams}: ProductInfoProps) {
 
             if (result.success) {
                 setIsAdded(true);
-                toast.success('Added to cart', {
-                    description: `${product.name} has been added to your cart`,
+                toast.success('Agregado al carrito', {
+                    description: `${product.name} ha sido agregado a tu carrito`,
                 });
 
                 // Reset the added state after 2 seconds
                 setTimeout(() => setIsAdded(false), 2000);
             } else {
                 toast.error('Error', {
-                    description: result.error || 'Failed to add item to cart',
+                    description: result.error || 'Error al agregar al carrito',
                 });
             }
         });
@@ -191,9 +191,9 @@ export function ProductInfo({product, searchParams}: ProductInfoProps) {
             {selectedVariant && (
                 <div className="text-sm">
                     {isInStock ? (
-                        <span className="text-green-600 font-medium">In Stock</span>
+                        <span className="text-green-600 font-medium">En Stock</span>
                     ) : (
-                        <span className="text-destructive font-medium">Out of Stock</span>
+                        <span className="text-destructive font-medium">Sin Stock</span>
                     )}
                 </div>
             )}
@@ -209,18 +209,18 @@ export function ProductInfo({product, searchParams}: ProductInfoProps) {
                     {isAdded ? (
                         <>
                             <CheckCircle2 className="mr-2 h-5 w-5"/>
-                            Added to Cart
+                            Agregado al Carrito
                         </>
                     ) : (
                         <>
                             <ShoppingCart className="mr-2 h-5 w-5"/>
                             {isPending
-                                ? 'Adding...'
+                                ? 'Agregando...'
                                 : !selectedVariant && product.optionGroups.length > 0
-                                    ? 'Select Options'
+                                    ? 'Seleccionar Opciones'
                                     : !isInStock
-                                        ? 'Out of Stock'
-                                        : 'Add to Cart'}
+                                        ? 'Sin Stock'
+                                        : 'Agregar al Carrito'}
                         </>
                     )}
                 </Button>

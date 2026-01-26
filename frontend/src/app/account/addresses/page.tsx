@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import { query } from '@/lib/vendure/api';
 
 export const metadata: Metadata = {
-    title: 'Addresses',
+    title: 'Direcciones',
 };
 import { GetCustomerAddressesQuery, GetAvailableCountriesQuery } from '@/lib/vendure/queries';
 import { AddressesClient } from './addresses-client';
@@ -19,9 +19,9 @@ export default async function AddressesPage(_props: PageProps<'/account/addresse
     return (
         <div className="space-y-6">
             <div>
-                <h1 className="text-3xl font-bold">Addresses</h1>
+                <h1 className="text-3xl font-bold">Direcciones</h1>
                 <p className="text-muted-foreground mt-2">
-                    Manage your saved shipping and billing addresses
+                    Administra tus direcciones de envío y facturación
                 </p>
             </div>
 

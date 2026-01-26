@@ -2,8 +2,8 @@ import type {Metadata} from 'next';
 import { ForgotPasswordForm } from './forgot-password-form';
 
 export const metadata: Metadata = {
-    title: 'Forgot Password',
-    description: 'Reset your password to regain access to your account.',
+    title: 'Recuperar Contraseña',
+    description: 'Restablece tu contraseña para recuperar el acceso a tu cuenta.',
 };
 
 export default async function ForgotPasswordPage(_props: PageProps<'/forgot-password'>) {

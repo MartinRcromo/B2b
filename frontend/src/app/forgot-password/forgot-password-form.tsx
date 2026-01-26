@@ -19,7 +19,7 @@ import {
 import Link from 'next/link';
 
 const forgotPasswordSchema = z.object({
-    emailAddress: z.email('Please enter a valid email address'),
+    emailAddress: z.email('Por favor ingresa un email válido'),
 });
 
 type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
@@ -56,15 +56,15 @@ export function ForgotPasswordForm() {
         return (
             <Card>
                 <CardHeader>
-                    <CardTitle>Check your email</CardTitle>
+                    <CardTitle>Revisa tu email</CardTitle>
                     <CardDescription>
-                        If an account exists with that email, we&apos;ve sent password reset instructions.
+                        Si existe una cuenta con ese email, hemos enviado instrucciones para restablecer tu contraseña.
                     </CardDescription>
                 </CardHeader>
                 <CardFooter>
                     <Link href="/sign-in">
                         <Button variant="outline" className="w-full">
-                            Back to Sign In
+                            Volver a Iniciar Sesión
                         </Button>
                     </Link>
                 </CardFooter>
@@ -75,9 +75,9 @@ export function ForgotPasswordForm() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Forgot password?</CardTitle>
+                <CardTitle>¿Olvidaste tu contraseña?</CardTitle>
                 <CardDescription>
-                    Enter your email address and we&apos;ll send you a link to reset your password.
+                    Ingresa tu email y te enviaremos un enlace para restablecer tu contraseña.
                 </CardDescription>
             </CardHeader>
             <Form {...form}>
@@ -88,11 +88,11 @@ export function ForgotPasswordForm() {
                             name="emailAddress"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel>Correo electrónico</FormLabel>
                                     <FormControl>
                                         <Input
                                             type="email"
-                                            placeholder="you@example.com"
+                                            placeholder="tu@email.com"
                                             disabled={isPending}
                                             {...field}
                                         />
@@ -110,13 +110,13 @@ export function ForgotPasswordForm() {
                     </CardContent>
                     <CardFooter className="flex flex-col space-y-4 mt-4">
                         <Button type="submit" className="w-full" disabled={isPending}>
-                            {isPending ? 'Sending...' : 'Send reset link'}
+                            {isPending ? 'Enviando...' : 'Enviar enlace'}
                         </Button>
                         <Link
                             href="/sign-in"
                             className="text-sm text-center text-muted-foreground hover:text-primary"
                         >
-                            Back to Sign In
+                            Volver a Iniciar Sesión
                         </Link>
                     </CardFooter>
                 </form>

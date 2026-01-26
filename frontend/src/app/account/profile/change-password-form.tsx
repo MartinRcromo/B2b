@@ -20,15 +20,15 @@ export function ChangePasswordForm() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Change Password</CardTitle>
+                <CardTitle>Cambiar Contraseña</CardTitle>
                 <CardDescription>
-                    Update your password to keep your account secure.
+                    Actualiza tu contraseña para mantener tu cuenta segura.
                 </CardDescription>
             </CardHeader>
             <form id="change-password-form" action={formAction}>
                 <CardContent className="space-y-4">
                     <div className="space-y-2">
-                        <Label htmlFor="currentPassword">Current Password</Label>
+                        <Label htmlFor="currentPassword">Contraseña Actual</Label>
                         <Input
                             id="currentPassword"
                             name="currentPassword"
@@ -39,7 +39,7 @@ export function ChangePasswordForm() {
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label htmlFor="newPassword">New Password</Label>
+                        <Label htmlFor="newPassword">Nueva Contraseña</Label>
                         <Input
                             id="newPassword"
                             name="newPassword"
@@ -50,7 +50,7 @@ export function ChangePasswordForm() {
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label htmlFor="confirmPassword">Confirm New Password</Label>
+                        <Label htmlFor="confirmPassword">Confirmar Nueva Contraseña</Label>
                         <Input
                             id="confirmPassword"
                             name="confirmPassword"
@@ -67,11 +67,11 @@ export function ChangePasswordForm() {
                     )}
                     {state?.success && (
                         <div className="text-sm text-green-600">
-                            Password updated successfully!
+                            ¡Contraseña actualizada correctamente!
                         </div>
                     )}
                     <Button type="submit" disabled={isPending}>
-                        {isPending ? 'Updating...' : 'Update Password'}
+                        {isPending ? 'Actualizando...' : 'Actualizar Contraseña'}
                     </Button>
                 </CardContent>
             </form>

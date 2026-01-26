@@ -45,14 +45,14 @@ export default function DeliveryStep({ onComplete }: DeliveryStepProps) {
   if (shippingMethods.length === 0) {
     return (
       <div className="text-center py-8">
-        <p className="text-muted-foreground">No shipping methods available. Please check your address.</p>
+        <p className="text-muted-foreground">No hay métodos de envío disponibles. Por favor verifica tu dirección.</p>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <h3 className="font-semibold">Select shipping method</h3>
+      <h3 className="font-semibold">Selecciona el método de envío</h3>
 
       <RadioGroup value={selectedMethodId || ''} onValueChange={setSelectedMethodId}>
         {shippingMethods.map((method) => (
@@ -74,10 +74,10 @@ export default function DeliveryStep({ onComplete }: DeliveryStepProps) {
                 <div className="text-right flex-shrink-0">
                   <p className="font-semibold">
                     {method.priceWithTax === 0
-                      ? 'FREE'
-                      : (method.priceWithTax / 100).toLocaleString('en-US', {
+                      ? 'GRATIS'
+                      : (method.priceWithTax / 100).toLocaleString('es-AR', {
                           style: 'currency',
-                          currency: 'USD',
+                          currency: 'ARS',
                         })}
                   </p>
                 </div>
@@ -93,7 +93,7 @@ export default function DeliveryStep({ onComplete }: DeliveryStepProps) {
         className="w-full"
       >
         {submitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-        Continue to payment
+        Continuar al pago
       </Button>
     </div>
   );

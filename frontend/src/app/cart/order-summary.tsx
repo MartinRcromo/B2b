@@ -17,7 +17,7 @@ type ActiveOrder = {
 export async function OrderSummary({activeOrder}: { activeOrder: ActiveOrder }) {
     return (
         <div className="border rounded-lg p-6 bg-card sticky top-4">
-            <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+            <h2 className="text-xl font-bold mb-4">Resumen del Pedido</h2>
 
             <div className="space-y-2 mb-4">
                 <div className="flex justify-between text-sm">
@@ -39,11 +39,11 @@ export async function OrderSummary({activeOrder}: { activeOrder: ActiveOrder }) 
                     </>
                 )}
                 <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Shipping</span>
+                    <span className="text-muted-foreground">Envío</span>
                     <span>
                         {activeOrder.shippingWithTax > 0
                             ? <Price value={activeOrder.shippingWithTax} currencyCode={activeOrder.currencyCode}/>
-                            : 'Calculated at checkout'}
+                            : 'Se calcula en el checkout'}
                     </span>
                 </div>
             </div>
@@ -58,11 +58,11 @@ export async function OrderSummary({activeOrder}: { activeOrder: ActiveOrder }) 
             </div>
 
             <Button className="w-full" size="lg" asChild>
-                <Link href="/checkout">Proceed to Checkout</Link>
+                <Link href="/checkout">Finalizar Compra</Link>
             </Button>
 
             <Button variant="outline" className="w-full mt-2" asChild>
-                <Link href="/">Continue Shopping</Link>
+                <Link href="/">Seguir Comprando</Link>
             </Button>
         </div>
     );

@@ -14,8 +14,8 @@ import {getActiveCustomer} from '@/lib/vendure/actions';
 import {getAvailableCountriesCached} from '@/lib/vendure/cached';
 
 export const metadata: Metadata = {
-    title: 'Checkout',
-    description: 'Complete your purchase.',
+    title: 'Finalizar Compra',
+    description: 'Completa tu compra.',
     robots: noIndexRobots(),
 };
 
@@ -51,7 +51,7 @@ export default async function CheckoutPage(_props: PageProps<'/checkout'>) {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+            <h1 className="text-3xl font-bold mb-8">Finalizar Compra</h1>
             <CheckoutProvider
                 order={activeOrder}
                 addresses={addresses}

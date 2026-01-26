@@ -105,7 +105,7 @@ export default function CheckoutFlow() {
                   }`}>
                     {completedSteps.has('contact') ? '✓' : getStepNumber('contact')}
                   </div>
-                  <span className="text-lg font-semibold">Contact Information</span>
+                  <span className="text-lg font-semibold">Información de Contacto</span>
                 </div>
               </AccordionTrigger>
               <AccordionContent className="pt-4">
@@ -135,7 +135,7 @@ export default function CheckoutFlow() {
                 }`}>
                   {completedSteps.has('shipping') ? '✓' : getStepNumber('shipping')}
                 </div>
-                <span className="text-lg font-semibold">Shipping Address</span>
+                <span className="text-lg font-semibold">Dirección de Envío</span>
               </div>
             </AccordionTrigger>
             <AccordionContent className="pt-4">
@@ -164,7 +164,7 @@ export default function CheckoutFlow() {
                 }`}>
                   {completedSteps.has('delivery') ? '✓' : getStepNumber('delivery')}
                 </div>
-                <span className="text-lg font-semibold">Delivery Method</span>
+                <span className="text-lg font-semibold">Método de Envío</span>
               </div>
             </AccordionTrigger>
             <AccordionContent className="pt-4">
@@ -193,7 +193,7 @@ export default function CheckoutFlow() {
                 }`}>
                   {completedSteps.has('payment') ? '✓' : getStepNumber('payment')}
                 </div>
-                <span className="text-lg font-semibold">Payment Method</span>
+                <span className="text-lg font-semibold">Método de Pago</span>
               </div>
             </AccordionTrigger>
             <AccordionContent className="pt-4">
@@ -220,7 +220,7 @@ export default function CheckoutFlow() {
                 }`}>
                   {getStepNumber('review')}
                 </div>
-                <span className="text-lg font-semibold">Review & Place Order</span>
+                <span className="text-lg font-semibold">Revisar y Confirmar Pedido</span>
               </div>
             </AccordionTrigger>
             <AccordionContent className="pt-4">

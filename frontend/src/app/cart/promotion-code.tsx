@@ -15,10 +15,10 @@ export async function PromotionCode({activeOrder}: { activeOrder: ActiveOrder })
             <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                     <Tag className="h-5 w-5"/>
-                    Promotion Code
+                    Código de Descuento
                 </CardTitle>
                 <CardDescription>
-                    Enter your discount code below
+                    Ingresa tu código de descuento
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -39,7 +39,7 @@ export async function PromotionCode({activeOrder}: { activeOrder: ActiveOrder })
                                         size="sm"
                                         className="h-8 text-destructive hover:text-destructive hover:bg-destructive/10"
                                     >
-                                        Remove
+                                        Eliminar
                                     </Button>
                                 </form>
                             </div>
@@ -50,11 +50,11 @@ export async function PromotionCode({activeOrder}: { activeOrder: ActiveOrder })
                         <Input
                             type="text"
                             name="code"
-                            placeholder="Enter code"
+                            placeholder="Ingresa el código"
                             className="flex-1"
                             required
                         />
-                        <Button type="submit">Apply</Button>
+                        <Button type="submit">Aplicar</Button>
                     </form>
                 )}
             </CardContent>

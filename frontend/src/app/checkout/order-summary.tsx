@@ -12,7 +12,7 @@ export default function OrderSummary() {
   return (
     <Card className="sticky top-4">
       <CardHeader>
-        <CardTitle>Order Summary</CardTitle>
+        <CardTitle>Resumen del Pedido</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-3">
@@ -39,7 +39,7 @@ export default function OrderSummary() {
                   </p>
                 )}
                 <p className="text-xs text-muted-foreground">
-                  Qty: {line.quantity}
+                  Cant: {line.quantity}
                 </p>
               </div>
               <div className="text-sm font-medium">
@@ -73,11 +73,11 @@ export default function OrderSummary() {
           )}
 
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Shipping</span>
+            <span className="text-muted-foreground">Envío</span>
             <span>
               {order.shippingWithTax > 0
                 ? <Price value={order.shippingWithTax} currencyCode={order.currencyCode} />
-                : 'To be calculated'}
+                : 'Por calcular'}
             </span>
           </div>
         </div>

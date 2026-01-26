@@ -28,21 +28,21 @@ function getErrorMessage(error: SetCustomerForOrderResult) {
     case 'EMAIL_CONFLICT':
       return (
         <>
-          An account already exists with this email.{' '}
+          Ya existe una cuenta con este email.{' '}
           <Link href="/sign-in?redirectTo=/checkout" className="underline hover:no-underline">
-            Sign in
+            Iniciar sesión
           </Link>{' '}
-          to continue.
+          para continuar.
         </>
       );
     case 'GUEST_CHECKOUT_DISABLED':
-      return 'Guest checkout is not enabled. Please sign in or create an account.';
+      return 'La compra como invitado no está habilitada. Por favor inicia sesión o crea una cuenta.';
     case 'NO_ACTIVE_ORDER':
       return (
         <>
-          Your cart is empty.{' '}
+          Tu carrito está vacío.{' '}
           <Link href="/" className="underline hover:no-underline">
-            Continue shopping
+            Seguir comprando
           </Link>
         </>
       );
@@ -86,9 +86,9 @@ export default function ContactStep({ onComplete }: ContactStepProps) {
   return (
     <div className="space-y-6">
       <p className="text-sm text-muted-foreground">
-        Already have an account?{' '}
+        ¿Ya tienes una cuenta?{' '}
         <Link href="/sign-in?redirectTo=/checkout" className="text-primary underline hover:no-underline">
-          Sign in
+          Iniciar sesión
         </Link>
       </p>
 
@@ -103,15 +103,15 @@ export default function ContactStep({ onComplete }: ContactStepProps) {
         <FieldGroup>
           <div className="grid grid-cols-2 gap-4">
             <Field className="col-span-2">
-              <FieldLabel htmlFor="emailAddress">Email Address *</FieldLabel>
+              <FieldLabel htmlFor="emailAddress">Correo electrónico *</FieldLabel>
               <Input
                 id="emailAddress"
                 type="email"
                 {...register('emailAddress', {
-                  required: 'Email is required',
+                  required: 'El email es requerido',
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid email address',
+                    message: 'Email inválido',
                   },
                 })}
               />
@@ -119,19 +119,19 @@ export default function ContactStep({ onComplete }: ContactStepProps) {
             </Field>
 
             <Field>
-              <FieldLabel htmlFor="firstName">First Name *</FieldLabel>
+              <FieldLabel htmlFor="firstName">Nombre *</FieldLabel>
               <Input
                 id="firstName"
-                {...register('firstName', { required: 'First name is required' })}
+                {...register('firstName', { required: 'El nombre es requerido' })}
               />
               <FieldError>{errors.firstName?.message}</FieldError>
             </Field>
 
             <Field>
-              <FieldLabel htmlFor="lastName">Last Name *</FieldLabel>
+              <FieldLabel htmlFor="lastName">Apellido *</FieldLabel>
               <Input
                 id="lastName"
-                {...register('lastName', { required: 'Last name is required' })}
+                {...register('lastName', { required: 'El apellido es requerido' })}
               />
               <FieldError>{errors.lastName?.message}</FieldError>
             </Field>
@@ -139,7 +139,7 @@ export default function ContactStep({ onComplete }: ContactStepProps) {
 
           <Button type="submit" disabled={loading} className="w-full mt-4">
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Continue
+            Continuar
           </Button>
         </FieldGroup>
       </form>
