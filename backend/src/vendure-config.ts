@@ -1,4 +1,4 @@
-import { VendureConfig, DefaultLogger, LogLevel, LanguageCode, PermissionDefinition, DefaultSearchPlugin } from '@vendure/core';
+import { VendureConfig, DefaultLogger, LogLevel, LanguageCode, PermissionDefinition, DefaultSearchPlugin, dummyPaymentHandler } from '@vendure/core';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
@@ -31,7 +31,7 @@ export const config: VendureConfig = {
     shopApiPlayground: IS_DEV,
     shopApiDebug: IS_DEV,
     cors: {
-      origin: process.env.CORS_ORIGIN || ['http://localhost:3001', 'https://b2b-argenta.netlify.app'],
+      origin: process.env.CORS_ORIGIN || ['http://localhost:3001', 'https://b2b-argenta.netlify.app', 'https://b2b-fitam.netlify.app'],
       credentials: true,
       exposedHeaders: ['vendure-auth-token'],
     },
@@ -94,7 +94,7 @@ export const config: VendureConfig = {
       },
   paymentOptions: {
     paymentMethodHandlers: [
-      // Los pagos se manejan offline, pero mantenemos handlers básicos
+      dummyPaymentHandler,
     ],
   },
   customFields: {
