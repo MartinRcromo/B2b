@@ -11,10 +11,10 @@ import {
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 
 const sortOptions = [
-    {value: 'name-asc', label: 'Name: A to Z'},
-    {value: 'name-desc', label: 'Name: Z to A'},
-    {value: 'price-asc', label: 'Price: Low to High'},
-    {value: 'price-desc', label: 'Price: High to Low'},
+    {value: 'name-asc', label: 'Nombre: A - Z'},
+    {value: 'name-desc', label: 'Nombre: Z - A'},
+    {value: 'price-asc', label: 'Precio: Menor a Mayor'},
+    {value: 'price-desc', label: 'Precio: Mayor a Menor'},
 ];
 
 export function SortDropdown() {
@@ -34,7 +34,7 @@ export function SortDropdown() {
     return (
         <Select value={currentSort} onValueChange={handleSortChange}>
             <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Sort by"/>
+                <SelectValue placeholder="Ordenar por"/>
             </SelectTrigger>
             <SelectContent>
                 {sortOptions.map((option) => (

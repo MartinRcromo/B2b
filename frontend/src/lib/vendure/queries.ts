@@ -501,3 +501,25 @@ export const GetCollectionProductsQuery = graphql(`
         }
     }
 `, [ProductCardFragment]);
+
+// Fallback query when search index is empty (multi-channel issue)
+export const GetAllProductsQuery = graphql(`
+    query GetAllProducts($options: ProductListOptions) {
+        products(options: $options) {
+            totalItems
+            items {
+                id
+                name
+                slug
+                featuredAsset {
+                    id
+                    preview
+                }
+                variants {
+                    id
+                    priceWithTax
+                }
+            }
+        }
+    }
+`);
