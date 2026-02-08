@@ -41,6 +41,14 @@ const netlifyConfig = {
 /**
  * @type {import('@remix-run/dev').AppConfig}
  */
+const vercelConfig = {
+  ignoredRouteFiles: ['**/.*'],
+  serverModuleFormat: 'esm',
+  ...commonConfig,
+};
+/**
+ * @type {import('@remix-run/dev').AppConfig}
+ */
 const devConfig = {
   appDirectory: 'app',
   serverModuleFormat: 'cjs',
@@ -66,9 +74,9 @@ function selectConfig() {
     throw new Error(`Unknown NODE_ENV: ${process.env.NODE_ENV}`);
   if (process.env.CF_PAGES) return cloudflarePagesConfig;
   if (process.env.NETLIFY) return netlifyConfig;
+  if (process.env.VERCEL) return vercelConfig;
   if (process.env.NODE_ENV === 'development') return devConfig;
-  if (!process.env.CF_PAGES && !process.env.NETLIFY) return buildConfig;
-  throw new Error(`Cannot select config`);
+  return buildConfig;
 }
 
 export default selectConfig();
