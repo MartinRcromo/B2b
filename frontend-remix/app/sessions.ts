@@ -1,20 +1,9 @@
-import {
-  IS_CF_PAGES,
-  safeRequireNodeDependency,
-} from '~/utils/platform-adapter';
 import { SessionStorage } from '@remix-run/server-runtime/dist/sessions';
 import { ErrorResult } from '~/generated/graphql';
-import { createCookieSessionStorage } from '@remix-run/cloudflare';
-import { CreateCookieSessionStorageFunction } from '@remix-run/server-runtime';
+import { createCookieSessionStorage } from '@remix-run/node';
 
-async function getCookieSessionStorageFactory(): Promise<CreateCookieSessionStorageFunction> {
-  if (IS_CF_PAGES) {
-    return createCookieSessionStorage;
-  } else {
-    return safeRequireNodeDependency('@remix-run/node').then(
-      (module) => module.createCookieSessionStorage,
-    );
-  }
+function getCookieSessionStorageFactory() {
+  return createCookieSessionStorage;
 }
 let sessionStorage: SessionStorage<
   { activeOrderError: ErrorResult } & Record<string, any>
@@ -24,7 +13,7 @@ export async function getSessionStorage() {
   if (sessionStorage) {
     return sessionStorage;
   }
-  const factory = await getCookieSessionStorageFactory();
+  const factory = getCookieSessionStorageFactory();
   sessionStorage = factory({
     cookie: {
       name: 'vendure_remix_session',
