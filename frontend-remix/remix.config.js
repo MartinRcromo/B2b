@@ -32,8 +32,7 @@ const cloudflarePagesConfig = {
  * @type {import('@remix-run/dev').AppConfig}
  */
 const netlifyConfig = {
-  serverBuildPath: '.netlify/functions-internal/server.js',
-  server: './server-netlify.js',
+  serverModuleFormat: 'esm',
   ignoredRouteFiles: ['**/.*'],
   ...commonConfig,
 };

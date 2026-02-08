@@ -13,14 +13,15 @@
     "dev:cf": "cross-env CF_PAGES=1 remix dev --manual -c \"yarn run dev:wrangler\"",
     "start:cf": "cross-env NODE_ENV=production yarn run dev:wrangler",
     "start": "remix-serve build",
-    "generate": "graphql-codegen --config codegen.yml",
-    "prepare": "husky install"
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@graphql-codegen/typescript-generic-sdk": "^3.0.4",
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "@netlify/functions": "^1.3.0",
+    "@netlify/remix-adapter": "^2.7.0",
+    "@netlify/remix-runtime": "^2.4.0",
     "@remix-run/cloudflare": "^2.4.1",
     "@remix-run/cloudflare-pages": "^2.4.1",
     "@remix-run/css-bundle": "^2.4.1",
