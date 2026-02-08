@@ -1,7 +1,10 @@
 [build]
   command = "yarn run build:nf"
-  functions = "netlify/functions"
   publish = "public"
+
+[functions]
+  directory = ".netlify/functions-internal"
+  node_bundler = "esbuild"
 
 [dev]
   command = "remix watch"
