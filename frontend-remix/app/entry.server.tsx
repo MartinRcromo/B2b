@@ -9,7 +9,7 @@ import { getI18NextServer, getPlatformBackendApiCtx } from './i18next.server';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import i18n from './i18n';
 import {
-  IS_CF_PAGES,
+  USE_WEB_STREAMS,
   safeRequireNodeDependency,
 } from '~/utils/platform-adapter';
 
@@ -122,7 +122,7 @@ export default async function handleRequest(
     </I18nextProvider>
   );
 
-  const requestHandler: PlatformRequestHandler = IS_CF_PAGES
+  const requestHandler: PlatformRequestHandler = USE_WEB_STREAMS
     ? handleCfRequest
     : handleNodeRequest;
 
