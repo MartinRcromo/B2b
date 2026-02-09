@@ -70,12 +70,12 @@ const buildConfig = {
 };
 
 function selectConfig() {
-  if (!['development', 'production'].includes(process.env.NODE_ENV))
-    throw new Error(`Unknown NODE_ENV: ${process.env.NODE_ENV}`);
+  // Vercel sets VERCEL=1 during build
+  if (process.env.VERCEL) return vercelConfig;
   if (process.env.CF_PAGES) return cloudflarePagesConfig;
   if (process.env.NETLIFY) return netlifyConfig;
-  if (process.env.VERCEL) return vercelConfig;
   if (process.env.NODE_ENV === 'development') return devConfig;
+  // Default to build config for production or undefined NODE_ENV
   return buildConfig;
 }
 
