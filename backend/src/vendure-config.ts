@@ -31,7 +31,13 @@ export const config: VendureConfig = {
     shopApiPlayground: IS_DEV,
     shopApiDebug: IS_DEV,
     cors: {
-      origin: process.env.CORS_ORIGIN || ['http://localhost:3001', 'https://b2b-argenta.netlify.app', 'https://b2b-fitam.netlify.app', 'https://b2b-vendure2.netlify.app'],
+      origin: process.env.CORS_ORIGIN || [
+        'http://localhost:3001',
+        'https://b2b-argenta.netlify.app',
+        'https://b2b-fitam.netlify.app',
+        'https://b2b-vendure2.netlify.app',
+        /\.vercel\.app$/,
+      ],
       credentials: true,
       exposedHeaders: ['vendure-auth-token'],
     },
