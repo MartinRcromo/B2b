@@ -7,6 +7,6 @@
   "env": {
     "NODE_ENV": "production",
     "VENDURE_API_URL": "https://b2b-backend-jg8j.onrender.com/shop-api",
-    "VENDURE_CHANNEL_TOKEN": "858019"
+    "VENDURE_CHANNEL_TOKEN": "hmjd8j15ar58nw752yf"
   }
 }
