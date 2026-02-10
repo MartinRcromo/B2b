@@ -2,38 +2,50 @@ import type { EntryContext } from '@remix-run/server-runtime';
 import { RemixServer } from '@remix-run/react';
 import isbot from 'isbot';
 
-import ReactDOM from 'react-dom/server';
-
 import { createInstance } from 'i18next';
 import { getI18NextServer, getPlatformBackendApiCtx } from './i18next.server';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import i18n from './i18n';
-import {
-  USE_WEB_STREAMS,
-  safeRequireNodeDependency,
-} from '~/utils/platform-adapter';
+import { safeRequireNodeDependency } from '~/utils/platform-adapter';
 
 const ABORT_DELAY = 5000;
 
-type PlatformRequestHandler = (
-  arg0: Request,
-  arg1: number,
-  arg2: Headers,
-  arg3: EntryContext,
-  arg4: JSX.Element,
-) => Response | Promise<Response>;
+// Runtime check for Web Streams API support
+// This function prevents build-time optimization by the bundler
+function shouldUseWebStreams(): boolean {
+  // Check at runtime if we're in Cloudflare Pages (CF_PAGES=1)
+  // Vercel and Netlify use Node.js runtime, so they should use renderToPipeableStream
+  if (typeof process !== 'undefined' && process.env) {
+    const isCfPages = process.env.CF_PAGES === '1';
+    const isVercel = process.env.VERCEL === '1' || process.env.VERCEL === 'true';
+    const isNetlify = process.env.NETLIFY === 'true';
 
-async function handleCfRequest(
+    // Only use Web Streams for Cloudflare Pages
+    // Vercel and Netlify should always use Node.js streams
+    if (isVercel || isNetlify) {
+      return false;
+    }
+    if (isCfPages) {
+      return true;
+    }
+  }
+
+  // If process is undefined, we're likely in an edge runtime
+  // But for safety, default to Node.js streams
+  return false;
+}
+
+async function handleWebStreamsRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  _remixContext: EntryContext,
   jsx: JSX.Element,
 ) {
-  const body = await ReactDOM.renderToReadableStream(jsx, {
+  const ReactDOM = await import('react-dom/server');
+  const body = await (ReactDOM as any).renderToReadableStream(jsx, {
     signal: request.signal,
     onError(error: unknown) {
-      // Log streaming rendering errors from inside the shell
       console.error(error);
       responseStatusCode = 500;
     },
@@ -54,9 +66,10 @@ async function handleNodeRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  _remixContext: EntryContext,
   jsx: JSX.Element,
 ): Promise<Response> {
+  const ReactDOM = await import('react-dom/server');
   let callbackName = isbot(request.headers.get('user-agent'))
     ? 'onAllReady'
     : 'onShellReady';
@@ -64,7 +77,7 @@ async function handleNodeRequest(
   return new Promise((resolve, reject) => {
     let didError = false;
 
-    let { pipe, abort } = ReactDOM.renderToPipeableStream(jsx, {
+    let { pipe, abort } = (ReactDOM as any).renderToPipeableStream(jsx, {
       [callbackName]: async () => {
         const { PassThrough } = await safeRequireNodeDependency('node:stream');
 
@@ -88,7 +101,6 @@ async function handleNodeRequest(
       },
       onError(error: unknown) {
         didError = true;
-
         console.error(error);
       },
     });
@@ -122,11 +134,18 @@ export default async function handleRequest(
     </I18nextProvider>
   );
 
-  const requestHandler: PlatformRequestHandler = USE_WEB_STREAMS
-    ? handleCfRequest
-    : handleNodeRequest;
+  // Runtime decision - cannot be optimized away by bundler
+  if (shouldUseWebStreams()) {
+    return handleWebStreamsRequest(
+      request,
+      responseStatusCode,
+      responseHeaders,
+      remixContext,
+      jsx,
+    );
+  }
 
-  return requestHandler(
+  return handleNodeRequest(
     request,
     responseStatusCode,
     responseHeaders,
