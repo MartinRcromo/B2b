@@ -5,6 +5,8 @@
   "outputDirectory": "build",
   "regions": ["iad1"],
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "VENDURE_API_URL": "https://b2b-backend-jg8j.onrender.com/shop-api",
+    "VENDURE_CHANNEL_TOKEN": "858019"
   }
 }
